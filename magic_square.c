@@ -13,8 +13,7 @@ int W[6];
 void
 printBoard()
 {
-	system("cls");
-	printf("  1 2 3\n");
+	printf("\n  1 2 3\n");
 	printf("1 %d %d %d\n", board[0][0], board[0][1], board[0][2]);
 	printf("2 %d %d %d\n", board[1][0], board[1][1], board[1][2]);
 	printf("3 %d %d %d\n", board[2][0], board[2][1], board[2][2]);
@@ -26,7 +25,7 @@ pegBoardChoice()
 {
     int x, y,
         choice;
-    int i,j,k;
+    int i,j;
 
     // peg choice
     do
@@ -77,6 +76,8 @@ gameOver(bool* over)
             if (W[i]<15) 
             {
                 *over=!(*over);
+                if (turn) printf("\nPlayer B wins");
+                else printf("\nPlayer A wins");        
                 return;
             }
             else counter++;
@@ -94,6 +95,8 @@ gameOver(bool* over)
             if (W[i+3]<15)
             {
                 *over=!(*over);
+                if (turn) printf("\nPlayer B wins");
+                else printf("\nPlayer A wins");        
                 return;
             }
             else counter++;
@@ -102,7 +105,10 @@ gameOver(bool* over)
 
     if (counter>=3)
     {
-        
+        *over=!(*over);
+        if (turn) printf("\nPlayer A wins");
+        else printf("\nPlayer B wins");        
+        return;
     }
 
     turn=!turn;
@@ -111,7 +117,6 @@ gameOver(bool* over)
 int
 main()
 {
-	int i;
 	
 	printf("%15s\n", "=================");
 	printf("%15s\n", "MAGIC SQUARES");
@@ -125,9 +130,10 @@ main()
 
         pegBoardChoice();
         gameOver(&over);
-		
+
 	} while (!over);
-	
+
+    printBoard();
 
 	return 0;
 }
