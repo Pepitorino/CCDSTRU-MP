@@ -2,13 +2,15 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
+//variables 
 int board[3][3]={{0,0,0},{0,0,0},{0,0,0}};
-int pegs[9][2]={{1,0},{2,0},{3,0},{4,0},{5,0},{6,0},{7,0},{8,0},{9,0}};
+int pegs[9][2]={{1,0},{2,0},{3,0},{4,0},{5,0},{6,0},{7,0},{8,0},{9,0}}; // pegs is  P - {One + Two + Three + Four + Five + Six}
+//system initialization
 bool ok = false;
 bool next = false;
 bool turn = true;
 bool over = false;
-int W[6];
+int W[6]; // W is the subset of the power set of P that is = {One + Two + Three + Four + Five + Six}
 
 void
 printBoard()
